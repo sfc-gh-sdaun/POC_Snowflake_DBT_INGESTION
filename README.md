@@ -1,4 +1,5 @@
 # POC_Snowflake_DBT_INGESTION
+
 Welcome to the Proof of Concept (POC) for Snowflake’s dbt ingestion feature! This is your chance to try it early, see how it works with your dbt project, and help us improve before general release.
 
 With this POC, you’ll take your dbt manifest.json file, run a stored procedure in Snowflake, and instantly get ready-to-use semantic model YAML file that you can copy into your account. If you’re not using MetricFlow, we’ll just output an object of tables, columns, and descriptions.
@@ -6,12 +7,14 @@ With this POC, you’ll take your dbt manifest.json file, run a stored procedure
 Note: This repository is a shortened version of the helper-snowparser-for-dbt, which is part of the emerging-solutions-toolbox in the Snowflake Labs, and can be found [here](https://github.com/Snowflake-Labs/emerging-solutions-toolbox/tree/main/helper-snowparser-for-dbt).
 
 **What You’ll Get**
+
 * A Snowflake Semantic model generated directly from your dbt project
 * Automatic extraction of tables, columns, and relationships
 * Rich metrics and relationships if using MetricFlow
 * A repeatable process you can run again whenever your dbt project changes
 
 **Prerequisites**
+
 Before you start, please make sure you have:
 1. Downloaded the dbt `manifest.json` file from your dbt project
 2. Created a Snowflake trial account with ADMINUSER rights, or else permissions to:
@@ -19,6 +22,7 @@ Before you start, please make sure you have:
      * Create a stored procedure
   
 **Step-by-Step Instructions** 
+
 1. Deploy Stored Procedure
 * Copy and paste contents of setup.sql in a Snowflake SQL Worksheet
 * Run the entire script
@@ -45,7 +49,6 @@ CALL SNOWPARSER_DBT_GET_OBJECTS(
     manifest_file => '@DROPBOX/manifest.json', 
     dbt_models =>  TO_ARRAY(['customers','order_items', 'orders', 'stg_locations', 'stg_products']) 
 );
-
 ```
 
 4. Save and Upload the YAML file
