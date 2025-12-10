@@ -6,12 +6,16 @@ With this POC, you’ll take your dbt manifest.json file, run a stored procedure
 
 Note: This repository is a shortened version of the helper-snowparser-for-dbt, which is part of the emerging-solutions-toolbox in the Snowflake Labs, and can be found [here](https://github.com/Snowflake-Labs/emerging-solutions-toolbox/tree/main/helper-snowparser-for-dbt).
 
+---
+
 **What You’ll Get**
 
 * A Snowflake Semantic model generated directly from your dbt project
 * Automatic extraction of tables, columns, and relationships
 * Rich metrics and relationships if using MetricFlow
 * A repeatable process you can run again whenever your dbt project changes
+
+---
 
 **Prerequisites**
 
@@ -21,16 +25,19 @@ Before you start, please make sure you have:
      * Create and write to a stage in Snowflake
      * Create a stored procedure
   
+---
+  
 **Step-by-Step Instructions** 
 
-1. Deploy Stored Procedure
+**1. Deploy Stored Procedure**
 * Copy and paste contents of setup.sql in a Snowflake SQL Worksheet
 * Run the entire script
 
-2. Upload Your Manifest
+**2. Upload Your Manifest**
 * In the Snowsight navigation bar, go to Database Explorer > GENAI_UTILITIES > UTILITIES > Stages > DROPBOX and upload your `manifest.json` by clicking on the blue "+Files" button in the upper right corner
 
-3. Run the Stored Procedure
+**3. Run the Stored Procedure**
+
 In a Snowsight SQL Worksheet, execute the Stored Procedure passing the staged manifest path as a parameter
 
 * If you are using MetricFlow semantic models (remove the last lines if you don't want to use the manifest data types):
@@ -51,13 +58,13 @@ CALL SNOWPARSER_DBT_GET_OBJECTS(
 );
 ```
 
-4. Save and Upload the YAML file
+**4. Save and Upload the YAML file**
 * The stored procedure will parse your dbt file and return a semantic YAML file (if your dbt project has semantic models) or a list of tables and columns otherwise.
 * Copy that output and create a YAML file with this content on your computer. Check that your tables, columns, metrics and other elements look correct or adjust if necessary.
 * Next, upload this file to the DROPBOX stage as well (check the steps under 2 if needed).
 
 
-5. Create a Semantic View
+**5. Create a Semantic View**
 * In the Snowsight navigation bar, go to AI & ML > Cortex Analyst 
 * Select the GENAI_UTILITIES database in the top and the utilities schema, then select the DROPBOX stage
 * You will find your uploaded YAML file under the tab 'Semantic models'
